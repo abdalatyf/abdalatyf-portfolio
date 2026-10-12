@@ -3,409 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdalatyf Ahmed | Data Analyst Portfolio</title>
-    <meta name="description" content="Healthcare Data Analyst specializing in Power BI Dashboards, Python ETL Pipelines, and SQL Database Architecture.">
+    <title>Abdalatyf Ahmed | Junior Data Analyst & Data Architect</title>
+    <meta name="description" content="Junior Data Analyst & Analytics Engineer specializing in Power BI Dashboards, SQL Star Schemas, Automated Python ETL Pipelines, Data Cleaning, and Web Scraping.">
     <style>
-        /* ===== RESET & BASE ===== */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
         :root {
-            --primary: #0f766e;
-            --primary-light: #14b8a6;
-            --primary-dark: #064e3b;
-            --bg: #f8fafc;
-            --surface: #ffffff;
-            --text: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-            --accent: #f59e0b;
+            --primary: #0f766e; --primary-light: #14b8a6; --primary-dark: #064e3b;
+            --bg: #f8fafc; --surface: #ffffff; --text: #1e293b; --muted: #64748b;
+            --border: #e2e8f0; --accent: #f59e0b;
         }
-
         html { scroll-behavior: smooth; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
 
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-            font-size: 16px;
-        }
+        nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,.95); backdrop-filter: blur(10px);
+              border-bottom: 1px solid var(--border); z-index: 1000; padding: .8rem 2rem; }
+        .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 700; color: var(--primary); text-decoration: none; font-size: 1.1rem; }
+        .nav-links { display: flex; gap: 1.2rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--muted); font-size: .88rem; font-weight: 500; transition: color .2s; }
+        .nav-links a:hover { color: var(--primary); }
 
-        /* ===== NAVIGATION ===== */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            padding: 0.8rem 2rem;
-        }
+        /* 1. COVER / HERO */
+        .hero { padding: 7.5rem 2rem 4rem; text-align: center; color: #fff;
+                background: linear-gradient(135deg, var(--primary-dark), var(--primary)); }
+        .hero-avatar { width: 190px; height: 190px; border-radius: 50%; object-fit: cover; border: 5px solid rgba(255,255,255,.9); box-shadow: 0 8px 25px rgba(0,0,0,.25); margin-bottom: 1.4rem; }
+        .hero h1 { font-size: 2.4rem; font-weight: 800; }
+        .hero .subtitle { font-size: 1.2rem; opacity: .92; margin: .4rem 0 .8rem; }
+        .hero .tagline { opacity: .88; margin-bottom: 2rem; max-width: 760px; margin-left: auto; margin-right: auto; font-size: 1.05rem; }
+        .btn { display: inline-block; margin: 0 .4rem; padding: .65rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: .9rem; transition: transform .2s, box-shadow .2s; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-primary { background: var(--accent); color: var(--text); }
+        .btn-secondary { background: rgba(255,255,255,.15); color: #fff; border: 1px solid rgba(255,255,255,.3); }
 
-        nav .nav-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav .logo {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        nav .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-
-        nav .nav-links a {
-            text-decoration: none;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        nav .nav-links a:hover { color: var(--primary); }
-
-        /* ===== HERO ===== */
-        .hero {
-            padding: 8rem 2rem 4rem;
-            text-align: center;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero .subtitle {
-            font-size: 1.15rem;
-            opacity: 0.9;
-            margin-bottom: 1rem;
-            font-weight: 400;
-        }
-
-        .hero .tagline {
-            font-size: 1rem;
-            opacity: 0.75;
-            margin-bottom: 2rem;
-        }
-
-        .hero .hero-links a {
-            display: inline-block;
-            margin: 0 0.5rem;
-            padding: 0.6rem 1.4rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .hero .hero-links a:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-
-        .hero .btn-primary { background: var(--accent); color: var(--text); }
-        .hero .btn-secondary { background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3); }
-
-        /* ===== SECTIONS ===== */
         section { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; }
+        .section-title { font-size: 1.8rem; font-weight: 700; color: var(--primary-dark); }
+        .section-subtitle { color: var(--muted); margin-bottom: 2rem; font-size: .98rem; }
+        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
 
-        .section-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 0.3rem;
-        }
+        /* USP BOX */
+        .usp-box { font-size: 1.08rem; font-weight: 600; color: var(--primary); border-left: 4px solid var(--primary); padding: 1rem 1.2rem; margin-bottom: 1.4rem; background: #f0fdfa; border-radius: 0 8px 8px 0; font-style: italic; }
 
-        .section-subtitle {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 2.5rem;
-        }
+        /* 3. EDUCATION & 5. EXPERIENCE CARDS */
+        .timeline-card { border-left: 4px solid var(--primary); padding: 1.5rem 1.8rem; margin-bottom: 1.4rem; background: var(--surface); border-radius: 0 10px 10px 0; border-top: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .timeline-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: .4rem; }
+        .timeline-title { font-size: 1.15rem; font-weight: 700; color: var(--primary-dark); }
+        .timeline-org { font-weight: 600; color: var(--primary); font-size: .95rem; }
+        .timeline-date { font-size: .85rem; color: var(--muted); font-weight: 600; background: #f1f5f9; padding: .2rem .6rem; border-radius: 4px; }
+        .timeline-card ul { padding-left: 1.2rem; font-size: .93rem; margin-top: .6rem; }
+        .timeline-card li { margin-bottom: .4rem; }
 
-        /* ===== ABOUT ===== */
-        .about-content {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            position: relative;
-        }
+        /* 4. SKILLS GRID */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.4rem; }
+        .skill h3 { font-size: .98rem; color: var(--primary); margin-bottom: .8rem; display: flex; align-items: center; gap: .5rem; }
+        .chip { display: inline-block; background: var(--bg); border: 1px solid var(--border); padding: .3rem .7rem; border-radius: 20px; font-size: .8rem; margin: 0 .3rem .4rem 0; font-weight: 500; }
 
-        .about-content .usp {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--primary);
-            border-left: 4px solid var(--primary);
-            padding-left: 1rem;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
+        /* 6. SERVICES GRID */
+        .grid-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+        .service h3 { color: var(--primary-dark); font-size: 1.1rem; margin: .6rem 0 .4rem; }
+        .service p { font-size: .91rem; color: var(--text); }
+        .icon { font-size: 2rem; }
 
-        .about-content p { color: var(--text); margin-bottom: 1rem; }
+        /* 7. PROJECTS */
+        .project { margin-bottom: 2.2rem; border-left: 5px solid var(--primary); }
+        .project-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: .4rem; }
+        .project h3 { color: var(--primary-dark); font-size: 1.25rem; }
+        .project-link { font-size: .88rem; font-weight: 600; color: var(--primary); text-decoration: none; }
+        .project-link:hover { text-decoration: underline; }
+        .meta { color: var(--muted); font-size: .88rem; margin-bottom: .8rem; font-weight: 500; }
+        .tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.2rem; }
+        .tags span { background: #f0fdfa; color: var(--primary); padding: .25rem .65rem; border-radius: 4px; font-size: .78rem; font-weight: 600; border: 1px solid #ccfbf1; }
+        .project ul { padding-left: 1.2rem; font-size: .94rem; }
+        .project li { margin-bottom: .5rem; }
+        .sub-heading { color: var(--primary-dark); font-weight: 700; margin-top: .8rem; margin-bottom: .3rem; font-size: .96rem; }
+        .code-pill { font-family: Consolas, monospace; background: #f1f5f9; padding: .1rem .4rem; border-radius: 4px; font-size: .85rem; color: #0f766e; }
+        .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1.2rem; }
+        .shots img { width: 100%; border-radius: 8px; border: 1px solid var(--border); }
+        .status { display: inline-block; background: #ecfdf5; color: #047857; font-size: .75rem; font-weight: 700; padding: .2rem .6rem; border-radius: 4px; border: 1px solid #a7f3d0; margin-left: .5rem; }
 
-        .credentials {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
+        /* 8. ACHIEVEMENTS STATS GRID */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.4rem; }
+        .stat-card { text-align: center; padding: 2rem 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
+        .stat-number { font-size: 2.2rem; font-weight: 800; color: var(--primary); margin-bottom: .4rem; }
+        .stat-label { font-size: .95rem; font-weight: 700; color: var(--primary-dark); margin-bottom: .4rem; }
+        .stat-desc { font-size: .84rem; color: var(--muted); line-height: 1.5; }
 
-        .credential-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: #f0fdfa;
-            border: 1px solid #99f6e4;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--primary-dark);
-        }
+        /* 9. CONTACT */
+        .contact { text-align: center; color: #fff; border-radius: 16px; padding: 3.5rem 2rem;
+                   background: linear-gradient(135deg, var(--primary-dark), var(--primary)); }
+        .contact h2 { font-size: 1.8rem; margin-bottom: .8rem; }
+        .contact p { opacity: .92; max-width: 650px; margin: 0 auto 1.8rem; font-size: 1.02rem; }
+        .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: .8rem; }
+        .contact-links a { color: #fff; font-weight: 600; text-decoration: none; padding: .55rem 1rem; background: rgba(255,255,255,.18); border-radius: 6px; font-size: .9rem; border: 1px solid rgba(255,255,255,.25); transition: background .2s, transform .2s; }
+        .contact-links a:hover { background: rgba(255,255,255,.3); transform: translateY(-2px); }
 
-        /* ===== SERVICES ===== */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
-            gap: 1.5rem;
-        }
+        footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .85rem; }
 
-        .service-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: box-shadow 0.3s, transform 0.2s;
-        }
-
-        .service-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateY(-3px); }
-
-        .service-card .service-icon { font-size: 2rem; margin-bottom: 0.8rem; }
-
-        .service-card h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 0.3rem;
-        }
-
-        .service-card .service-tagline {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        .service-card ul {
-            list-style: none;
-            margin-bottom: 1rem;
-        }
-
-        .service-card ul li {
-            padding: 0.3rem 0;
-            font-size: 0.9rem;
-            color: var(--text);
-        }
-
-        .service-card ul li::before {
-            content: "✓ ";
-            color: var(--primary);
-            font-weight: 700;
-        }
-
-        .outcome {
-            background: #f0fdfa;
-            border-radius: 8px;
-            padding: 0.8rem 1rem;
-            font-size: 0.85rem;
-            color: var(--primary-dark);
-            font-weight: 500;
-        }
-
-        /* ===== SKILLS ===== */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-category {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-        }
-
-        .skill-category h3 {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-
-        .skill-tag {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            padding: 0.35rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: var(--text);
-            font-weight: 500;
-        }
-
-        /* ===== PROJECTS ===== */
-        .projects-list { display: flex; flex-direction: column; gap: 2rem; }
-
-        .project-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 1.5rem;
-            transition: box-shadow 0.3s;
-        }
-
-        .project-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
-
-        .project-number {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            color: white;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            font-weight: 800;
-        }
-
-        .project-card h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 0.3rem;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-bottom: 1rem;
-        }
-
-        .project-tech span {
-            background: #f0fdfa;
-            color: var(--primary);
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        .project-section { margin-bottom: 0.8rem; }
-
-        .project-section strong {
-            display: block;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.3rem;
-        }
-
-        .project-section p { font-size: 0.9rem; }
-
-        .project-results {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 0.5rem;
-        }
-
-        .result-badge {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        /* ===== CTA ===== */
-        .cta {
-            text-align: center;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-            color: white;
-            border-radius: 16px;
-            padding: 3rem 2rem;
-            margin: 2rem auto;
-            max-width: 1100px;
-        }
-
-        .cta h2 { font-size: 1.6rem; margin-bottom: 1rem; }
-        .cta p { opacity: 0.9; margin-bottom: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-
-        .cta .cta-btn {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--text);
-            padding: 0.8rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: transform 0.2s;
-        }
-
-        .cta .cta-btn:hover { transform: translateY(-2px); }
-
-        .cta .guarantees {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .cta .guarantee {
-            font-size: 0.8rem;
-            opacity: 0.8;
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border);
-        }
-
-        footer a { color: var(--primary); text-decoration: none; }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            nav .nav-links { display: none; }
-            .hero h1 { font-size: 1.8rem; }
-            .services-grid { grid-template-columns: 1fr; }
-            .project-card { grid-template-columns: 1fr; }
-            .project-number { width: 36px; height: 36px; font-size: 1rem; }
-            .credentials { flex-direction: column; }
+        @media (max-width: 860px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2rem; }
+            .project-header, .timeline-header { flex-direction: column; }
         }
     </style>
 </head>
@@ -417,284 +113,281 @@
         <a href="#" class="logo">Abdalatyf Ahmed</a>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
+            <li><a href="#education">Education</a></li>
             <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#services">Services</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </div>
 </nav>
 
-<!-- HERO -->
-<header class="hero">
+<!-- 1. COVER / HERO -->
+<header class="hero" id="cover">
+    <img src="images/myPhoto.jpg" alt="Abdalatyf Ahmed Ibrahim" class="hero-avatar" onerror="this.style.display='none'">
     <h1>Abdalatyf Ahmed Ibrahim</h1>
-    <p class="subtitle">Healthcare Data Analyst | Power BI, SQL & Python ETL</p>
-    <p class="tagline">Transforming Clinical & Operational Data into Actionable Insights</p>
-    <div class="hero-links">
-        <a href="#contact" class="btn-primary">📩 Get In Touch</a>
-        <a href="#projects" class="btn-secondary">View Projects</a>
-    </div>
+    <p class="subtitle">Junior Data Analyst & Analytics Engineer | Power BI · SQL · Python</p>
+    <p class="tagline">Transforming complex datasets and raw records into reliable relational architectures, automated ETL pipelines, and decision-ready Power BI cockpits.</p>
+    <a href="#projects" class="btn btn-primary">View Projects</a>
+    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
 </header>
 
-<!-- ABOUT -->
+<!-- 2. ABOUT (WITH USP INSIDE) -->
 <section id="about">
     <h2 class="section-title">About Me</h2>
-    <p class="section-subtitle">The bridge between clinical medicine and data engineering.</p>
-    <div class="about-content">
-        <p class="usp">"Most data analysts don't understand healthcare metrics, and most clinical professionals can't code. I do both."</p>
-        <p>Trained in medicine at Al-Azhar University and certified in advanced data analytics, I bridge the critical divide between clinical complexity and robust data engineering. I don't just visualize data — I architect production-grade data systems.</p>
-        <p>Leveraging Python, SQL, and Power BI, I design normalized 3NF database schemas, build automated ETL pipelines processing 10,000+ complex patient and operational records with zero data quality errors, and deliver star-schema analytics models.</p>
-        <p>From wrangling messy electronic health records to deploying executive-ready KPI dashboards, I ensure every metric reflects clinical reality and rigorous technical integrity.</p>
-        <div class="credentials">
-            <span class="credential-badge">🎓 Medical Student — MBBCh Candidate, Al-Azhar University</span>
-            <span class="credential-badge">📊 Certified Professional Data Analyst — DEPI Round 5</span>
+    <p class="section-subtitle">Bridging data engineering precision with analytical research thinking.</p>
+    <div class="card">
+        <!-- USP STATEMENT -->
+        <div class="usp-box">
+            "I help businesses and organizations turn messy, complex data into reliable relational architectures, automated ETL pipelines, and decision-ready Power BI cockpits."
         </div>
+        <p>I am a Junior Data Analyst and Analytics Engineer currently training in the <strong>Digital Egypt Pioneers Initiative (DEPI Round 5)</strong>, alongside my academic medical studies at <strong>Al-Azhar University</strong>.</p>
+        <p style="margin-top: .8rem;">I don't just visualize surface metrics — I architect the entire data lifecycle. From programmatically extracting and cleaning 15 years of regulatory financial records with Python, to engineering normalized 9-table Star Schemas in MySQL with 121,000+ verified rows, and building interactive Power BI dashboards with drill-through navigation engines.</p>
+        <p style="margin-top: .8rem;">Currently, I serve as <strong>Team Leader, Lead Data Architect & QA Manager</strong> for our DEPI graduation project, directing a 6-member team on the <em>Financial Risk Early Warning System</em> analyzing 20 major US commercial banks across 60 quarters.</p>
     </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services">
-    <h2 class="section-title">Services</h2>
-    <p class="section-subtitle">Specialized data solutions built for healthcare organizations.</p>
-    <div class="services-grid">
+<!-- 3. EDUCATION -->
+<section id="education">
+    <h2 class="section-title">Education & Credentials</h2>
+    <p class="section-subtitle">Academic rigor combined with intensive professional data training.</p>
 
-        <div class="service-card">
-            <div class="service-icon">📊</div>
-            <h3>Healthcare Executive BI & Clinical Dashboards</h3>
-            <p class="service-tagline">Turn disjointed EHR exports into decision-ready visual intelligence.</p>
-            <ul>
-                <li>Star-schema data models for clinical facts & dimensions</li>
-                <li>Advanced DAX: readmission rates, bed occupancy, ALOS</li>
-                <li>Row-Level Security for HIPAA-aligned access</li>
-                <li>Drill-through analysis & time-intelligence filtering</li>
-            </ul>
-            <div class="outcome">📈 Eliminate 15+ hours/week of manual report compilation</div>
+    <div class="timeline-card">
+        <div class="timeline-header">
+            <div>
+                <span class="timeline-title">Bachelor of Medicine and Surgery (MBBCh Candidate)</span>
+                <div class="timeline-org">Faculty of Medicine, Al-Azhar University</div>
+            </div>
+            <span class="timeline-date">2025 – 2030 (Expected, Year 2)</span>
         </div>
+        <ul>
+            <li>Strong foundation in clinical problem solving, epidemiology, scientific research methodology, and evidence-based analytical thinking.</li>
+            <li>Translating medical diagnostic precision into structured data modeling and diagnostic business intelligence.</li>
+        </ul>
+    </div>
 
-        <div class="service-card">
-            <div class="service-icon">🔧</div>
-            <h3>Clinical Data Cleaning & Automated ETL</h3>
-            <p class="service-tagline">Transform messy hospital data into audit-ready production datasets.</p>
-            <ul>
-                <li>Automated Python (Pandas/NumPy) cleaning workflows</li>
-                <li>IQR outlier detection for physiologically impossible values</li>
-                <li>Idempotent database loading with zero duplicate risk</li>
-                <li>Enterprise logging & error recovery</li>
-            </ul>
-            <div class="outcome">⚡ Pipeline runtime reduced from hours to sub-minute execution</div>
+    <div class="timeline-card">
+        <div class="timeline-header">
+            <div>
+                <span class="timeline-title">Professional Data Analyst Program (Round 5)</span>
+                <div class="timeline-org">Digital Egypt Pioneers Initiative (DEPI) · MCIT</div>
+            </div>
+            <span class="timeline-date">July 2026 – December 2026</span>
         </div>
-
-        <div class="service-card">
-            <div class="service-icon">🗄️</div>
-            <h3>Healthcare Database Architecture & SQL</h3>
-            <p class="service-tagline">Design scalable clinical schemas and optimize million-row queries.</p>
-            <ul>
-                <li>Normalized 3NF schemas for healthcare entities</li>
-                <li>Complex SQL: CTEs, window functions, conditional aggregation</li>
-                <li>Performance indexing & stored procedures</li>
-                <li>Foreign key constraints & audit triggers</li>
-            </ul>
-            <div class="outcome">🚀 Query times reduced from minutes to sub-second responses</div>
-        </div>
-
-        <div class="service-card">
-            <div class="service-icon">🌐</div>
-            <h3>Healthcare Market Intelligence & Data Extraction</h3>
-            <p class="service-tagline">Automated extraction of medical pricing, registries & benchmarks.</p>
-            <ul>
-                <li>Medical equipment pricing intelligence scrapers</li>
-                <li>Clinical trial & registry extraction (ClinicalTrials.gov)</li>
-                <li>CMS hospital performance & regulatory benchmarks</li>
-                <li>Resilient architecture with rate-limiting & proxy rotation</li>
-            </ul>
-            <div class="outcome">💰 Identify 15–25% cost variance on medical supply procurement</div>
-        </div>
-
+        <ul>
+            <li>Intensive 6-month hands-on track sponsored by the Egyptian Ministry of Communications and Information Technology.</li>
+            <li>Comprehensive practical training in Python for Data Analysis, Relational Database Design (MySQL), Power BI Dashboard Architecture, DAX, Power Query, Data Modeling, and Freelancing.</li>
+        </ul>
     </div>
 </section>
 
-<!-- SKILLS -->
+<!-- 4. SKILLS -->
 <section id="skills">
     <h2 class="section-title">Technical Skills</h2>
-    <p class="section-subtitle">A full-stack data engineering toolkit with healthcare domain fluency.</p>
+    <p class="section-subtitle">Core technical stack across data engineering, relational modeling, and business intelligence.</p>
     <div class="skills-grid">
-
-        <div class="skill-category">
-            <h3>🔧 Data Prep & Engineering</h3>
-            <div class="skill-tags">
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">Pandas</span>
-                <span class="skill-tag">NumPy</span>
-                <span class="skill-tag">SQL</span>
-                <span class="skill-tag">ETL Pipelines</span>
-                <span class="skill-tag">Web Scraping</span>
-                <span class="skill-tag">Advanced Excel</span>
-                <span class="skill-tag">Power Query</span>
-            </div>
+        <div class="card skill">
+            <h3>⚙️ Data Engineering & Python</h3>
+            <span class="chip">Python 3.12</span>
+            <span class="chip">Data Cleaning</span>
+            <span class="chip">Web Scraping</span>
+            <span class="chip">Pandas</span>
+            <span class="chip">NumPy</span>
+            <span class="chip">Automated ETL Pipelines</span>
+            <span class="chip">BeautifulSoup</span>
+            <span class="chip">yfinance API</span>
+            <span class="chip">CLI & Batch Scripts</span>
         </div>
-
-        <div class="skill-category">
-            <h3>📊 Business Intelligence</h3>
-            <div class="skill-tags">
-                <span class="skill-tag">Power BI</span>
-                <span class="skill-tag">DAX</span>
-                <span class="skill-tag">Star Schema</span>
-                <span class="skill-tag">Row-Level Security</span>
-                <span class="skill-tag">Tableau</span>
-                <span class="skill-tag">KPI Reporting</span>
-            </div>
+        <div class="card skill">
+            <h3>🗄️ Database Architecture & SQL</h3>
+            <span class="chip">MySQL 8.0</span>
+            <span class="chip">Star Schema Design (3 Facts, 6 Dims)</span>
+            <span class="chip">3NF Normalization</span>
+            <span class="chip">Composite Keys</span>
+            <span class="chip">Complex Joins</span>
+            <span class="chip">CTEs</span>
+            <span class="chip">Window Functions</span>
         </div>
-
-        <div class="skill-category">
-            <h3>🗄️ Database & Architecture</h3>
-            <div class="skill-tags">
-                <span class="skill-tag">MySQL</span>
-                <span class="skill-tag">PostgreSQL</span>
-                <span class="skill-tag">3NF Normalization</span>
-                <span class="skill-tag">Window Functions</span>
-                <span class="skill-tag">CTEs</span>
-                <span class="skill-tag">Stored Procedures</span>
-            </div>
+        <div class="card skill">
+            <h3>📊 BI & Visualization</h3>
+            <span class="chip">Power BI Desktop</span>
+            <span class="chip">Power BI Service</span>
+            <span class="chip">DAX Measures</span>
+            <span class="chip">Power Query (M-Code)</span>
+            <span class="chip">VertiPaq Optimization</span>
+            <span class="chip">Field Parameters</span>
+            <span class="chip">Drill-Through Engine</span>
+            <span class="chip">Advanced Excel</span>
         </div>
-
-        <div class="skill-category">
-            <h3>🏥 Healthcare Domain</h3>
-            <div class="skill-tags">
-                <span class="skill-tag">Clinical KPIs</span>
-                <span class="skill-tag">EHR/EMR Data</span>
-                <span class="skill-tag">ICD-10 / CPT</span>
-                <span class="skill-tag">HIPAA Compliance</span>
-                <span class="skill-tag">Medical Terminology</span>
-            </div>
+        <div class="card skill">
+            <h3>🛠️ DevOps & Workflow</h3>
+            <span class="chip">Git & GitHub</span>
+            <span class="chip">VS Code</span>
+            <span class="chip">Batch Scripts (.bat)</span>
+            <span class="chip">.env Security</span>
+            <span class="chip">Code QA & Review</span>
+            <span class="chip">Agile Leadership</span>
         </div>
-
-        <div class="skill-category">
-            <h3>🛠️ Developer Tools</h3>
-            <div class="skill-tags">
-                <span class="skill-tag">Git & GitHub</span>
-                <span class="skill-tag">VS Code</span>
-                <span class="skill-tag">Jupyter Notebook</span>
-                <span class="skill-tag">CLI / Terminal</span>
-                <span class="skill-tag">MySQL Workbench</span>
-            </div>
-        </div>
-
     </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- 5. EXPERIENCE -->
+<section id="experience">
+    <h2 class="section-title">Experience & Roles</h2>
+    <p class="section-subtitle">Hands-on technical leadership and end-to-end project execution.</p>
+
+    <div class="timeline-card">
+        <div class="timeline-header">
+            <div>
+                <span class="timeline-title">Team Leader, Lead Data Architect & QA Manager</span>
+                <div class="timeline-org">Financial Risk Early Warning System (DEPI Graduation Project)</div>
+            </div>
+            <span class="timeline-date">Sept 2026 – Present</span>
+        </div>
+        <ul>
+            <li><strong>Cross-Functional Leadership:</strong> Directing a 6-member team through agile sprints, architectural reviews, and code QA standards for an econometric panel covering 20 major US commercial banks over 60 quarters (2008–2022).</li>
+            <li><strong>Automated Ingestion & Web Scraping:</strong> Built automated Python ingestion pipelines utilizing <span class="code-pill">yfinance</span>, <span class="code-pill">requests</span>, and selective regex extraction across 60 bulk FFIEC Call Report ZIP archives and FRED macroeconomic series.</li>
+            <li><strong>Data Cleaning & Anomaly Remediation:</strong> Resolved complex bank charter mergers using Federal Reserve IDRSSD keys, converted cumulative YTD income into true quarterly net income via <span class="code-pill">.shift(1)</span>, and programmatically repaired 639 distorted Schedule RC-R capital ratio records.</li>
+            <li><strong>Star Schema Modeling:</strong> Architected a normalized 9-table data warehouse in MySQL (3 facts, 6 dimensions) populated with 121,328 verified records via transactional bulk loading.</li>
+            <li><strong>DevOps Automation:</strong> Engineered a 1-click <span class="code-pill">setup_and_run.bat</span> deployment script automating venv creation, dependency installation, dynamic relative path resolution, and sequential ETL execution.</li>
+        </ul>
+    </div>
+
+    <div class="timeline-card">
+        <div class="timeline-header">
+            <div>
+                <span class="timeline-title">Data Analyst Trainee</span>
+                <div class="timeline-org">Digital Egypt Pioneers Initiative (DEPI Round 5)</div>
+            </div>
+            <span class="timeline-date">July 2026 – Present</span>
+        </div>
+        <ul>
+            <li>Underwent intensive training in SQL database querying, exploratory data analysis, Power BI data visualization, and freelance client delivery.</li>
+            <li>Engineered production-grade mini-projects including an executive 5-page Superstore business intelligence application with Power Query text hygiene, VertiPaq compression typing, and circular drill-through architecture.</li>
+        </ul>
+    </div>
+</section>
+
+<!-- 6. OFFERED SERVICES -->
+<section id="services">
+    <h2 class="section-title">Offered Services</h2>
+    <p class="section-subtitle">Concrete data solutions delivered for businesses and clients.</p>
+    <div class="grid-services">
+        <div class="card service">
+            <div class="icon">📊</div>
+            <h3>Power BI Executive Dashboards</h3>
+            <p>Transform disjointed spreadsheets into interactive, multi-page analytical cockpits with custom grid layouts, dynamic DAX measures, field parameters, and drill-through navigation.</p>
+        </div>
+        <div class="card service">
+            <div class="icon">🗄️</div>
+            <h3>Database Architecture & Star Schemas</h3>
+            <p>Design normalized relational databases (MySQL/PostgreSQL) and dimensional models (facts and dimensions) optimized for analytical speed and clean reporting.</p>
+        </div>
+        <div class="card service">
+            <div class="icon">🧹</div>
+            <h3>Data Cleaning & Automated ETL</h3>
+            <p>Build automated Python scripts (Pandas, NumPy) and Power Query pipelines that detect outliers, deduplicate records, fix broken formats, and output audit-ready datasets without manual human error.</p>
+        </div>
+        <div class="card service">
+            <div class="icon">🌐</div>
+            <h3>Web Scraping & Data Extraction</h3>
+            <p>Develop automated scrapers (BeautifulSoup, Requests, APIs) to extract public registries, market benchmarks, and web archives into structured databases and CSV files.</p>
+        </div>
+    </div>
+</section>
+
+<!-- 7. PROJECTS -->
 <section id="projects">
     <h2 class="section-title">Featured Projects</h2>
-    <p class="section-subtitle">Real case studies following the Problem → Action → Result framework.</p>
-    <div class="projects-list">
+    <p class="section-subtitle">Deep case studies demonstrating data cleaning, web scraping, modeling, and dashboard design.</p>
 
-        <!-- Project 1 -->
-        <div class="project-card">
-            <div class="project-number">1</div>
+    <!-- Project 1: EWS Flagship -->
+    <div class="card project">
+        <div class="project-header">
+            <h3>Financial Risk Early Warning System (EWS) <span class="status">FLAGSHIP · IN PROGRESS</span></h3>
+            <a href="https://github.com/abdalatyf/Financial_Risk_EWS" target="_blank" class="project-link">View GitHub Repository ↗</a>
+        </div>
+        <p class="meta">Python (ETL, Scraping, Cleaning) · MySQL (Star Schema) · Power BI · Git · DEPI Graduation Project (Sept 2026 – Present)</p>
+        <div class="tags">
+            <span>Team Leader</span><span>Web Scraping</span><span>Data Cleaning</span><span>FFIEC Call Reports</span>
+            <span>Star Schema (9 Tables)</span><span>121,328 Records</span><span>DevOps (.bat)</span>
+        </div>
+        <ul>
+            <li><strong>Core Analytical Objective:</strong> Engineered an econometric panel analyzing 20 major US commercial banks over 60 quarters (2008–2022 = 1,200 bank-quarters) to prove that the March 2023 Silicon Valley Bank collapse was mathematically predictable quarters prior.</li>
+            <li><strong>Web Scraping & Selective Ingestion:</strong> Built automated Python extractors utilizing <span class="code-pill">yfinance</span> (backed by <span class="code-pill">requests</span> and <span class="code-pill">urllib3</span>) and regex archive parsing (<span class="code-pill">zipfile</span>, <span class="code-pill">glob</span>). Selective schedule whitelisting (<span class="code-pill">POR</span>, <span class="code-pill">RC</span>, <span class="code-pill">RI</span>) slashed raw disk extraction from 15 GB down to 2.7 GB (82% reduction).</li>
+            <li><strong>Multi-Source Market Data Aggregation:</strong> Extracted historical equity data across active banks and delisted entities (SIVB, Signature Bank, Silvergate, PacWest) while pruning zombie trading noise post-receivership to protect model return integrity.</li>
+            <li><strong>Extensive Data Cleaning & Anomaly Remediation:</strong>
+                <ul>
+                    <li><em>Schedule RC-R Ratio Repair:</em> Programmatically detected and repaired decimal vs. percentage mutations (e.g. 0.1245 vs. 12.45%), recovering exactly 639 distorted capital records.</li>
+                    <li><em>Cumulative YTD Conversion:</em> Converted Schedule RI cumulative figures into true quarterly standalone values using <span class="code-pill">.shift(1).fillna(0)</span> partitioned by bank and year.</li>
+                    <li><em>Loan Sector Reconciliation:</em> Dynamically reconciled residual variance across 16 loan sectors into <span class="code-pill">16_All_Other</span>, preserving balance sheet identity across all bank-quarters.</li>
+                    <li><em>Entity Tracking via Federal Reserve IDRSSD:</em> Replaced unstable FDIC certificates with immutable IDRSSD keys, preventing broken time series across bank mergers (e.g. NYCB acquiring Flagstar, PacWest into Banc of California).</li>
+                </ul>
+            </li>
+            <li><strong>Production Star Schema (121,328 Records):</strong> Designed a 9-table data warehouse in MySQL with 3 Facts (<span class="code-pill">fact_financials</span>: 23,803 rows; <span class="code-pill">fact_loan_balances</span>: 18,844 rows; <span class="code-pill">fact_daily_market</span>: 74,525 rows) and 6 Dimensions (<span class="code-pill">dim_bank</span>, <span class="code-pill">dim_quarter</span>, <span class="code-pill">dim_date</span>, <span class="code-pill">dim_financial_metric</span>, <span class="code-pill">dim_loan_sector</span>, <span class="code-pill">dim_macro_fed_rates</span>).</li>
+            <li><strong>1-Click DevOps Orchestration:</strong> Authored <span class="code-pill">setup_and_run.bat</span> providing 5-step end-to-end automation (venv creation, dependency sync, relative path resolution, and transactional bulk loading with interactive CLI safety prompts).</li>
+        </ul>
+    </div>
+
+    <!-- Project 2: Superstore BI App -->
+    <div class="card project">
+        <div class="project-header">
+            <h3>Executive Superstore Analytics Application</h3>
             <div>
-                <h3>Automated Clinical Data Cleaning & Validation Engine</h3>
-                <div class="project-tech">
-                    <span>Python</span>
-                    <span>Pandas</span>
-                    <span>NumPy</span>
-                    <span>OOP</span>
-                </div>
-                <div class="project-section">
-                    <strong>Problem</strong>
-                    <p>EHR data extracts suffered from duplicate encounter IDs, malformed records, missing diagnostic fields, and physiologically implausible vitals — jeopardizing clinical reporting integrity.</p>
-                </div>
-                <div class="project-section">
-                    <strong>Action</strong>
-                    <p>Engineered an automated, object-oriented cleaning engine with IQR outlier detection (1.5×IQR thresholding), text normalization, clinically validated imputation, and strict schema assertions enforcing zero nulls and zero duplicates.</p>
-                </div>
-                <div class="project-results">
-                    <span class="result-badge">10,000+ records cleaned</span>
-                    <span class="result-badge">100% data integrity</span>
-                    <span class="result-badge">< 2 second audit reports</span>
-                </div>
+                <a href="documents/Executive_Superstore_Analytics_Report.pdf" target="_blank" class="project-link">View Full Report (PDF) ↗</a>
             </div>
         </div>
-
-        <!-- Project 2 -->
-        <div class="project-card">
-            <div class="project-number">2</div>
-            <div>
-                <h3>Automated Clinic Supply & Inventory ETL Pipeline</h3>
-                <div class="project-tech">
-                    <span>Python</span>
-                    <span>MySQL</span>
-                    <span>argparse</span>
-                    <span>logging</span>
-                </div>
-                <div class="project-section">
-                    <strong>Problem</strong>
-                    <p>A multi-clinic network spent 3+ hours daily manually reconciling spreadsheets and syncing supply records, causing restocking delays and inventory stockout risks.</p>
-                </div>
-                <div class="project-section">
-                    <strong>Action</strong>
-                    <p>Architected a CLI-driven ETL pipeline with --dry-run simulation, RotatingFileHandler logging, and idempotent MySQL loading using executemany() bulk inserts for zero duplicate ingestion.</p>
-                </div>
-                <div class="project-results">
-                    <span class="result-badge">3 hours → 5 seconds</span>
-                    <span class="result-badge">5,000+ records/run</span>
-                    <span class="result-badge">100% crash-resilient</span>
-                </div>
-            </div>
+        <p class="meta">Power BI · DAX · Power Query (Data Cleaning) · Dimensional Modeling · UI/UX Design · DEPI Mini-Project (August 2026)</p>
+        <div class="tags">
+            <span>Data Cleaning</span><span>5-Page Architecture</span><span>VertiPaq Optimization</span><span>Field Parameters</span>
+            <span>Drill-Through</span><span>Azure Maps</span><span>Pop-Out Filter Modal</span>
         </div>
-
-        <!-- Project 3 -->
-        <div class="project-card">
-            <div class="project-number">3</div>
-            <div>
-                <h3>Clinical Operations & Executive KPI Intelligence Dashboard</h3>
-                <div class="project-tech">
-                    <span>Power BI</span>
-                    <span>DAX</span>
-                    <span>Power Query</span>
-                    <span>Star Schema</span>
-                    <span>RLS</span>
-                </div>
-                <div class="project-section">
-                    <strong>Problem</strong>
-                    <p>Hospital leadership lacked centralized visibility into patient throughput, triage wait times, bed occupancy, and departmental SLA adherence — relying on static spreadsheets with high query latency.</p>
-                </div>
-                <div class="project-section">
-                    <strong>Action</strong>
-                    <p>Designed a Star Schema data model mapping encounter facts to standardized dimensions, formulated 15+ DAX measures with time-intelligence, built Color-as-Status UX (RAG hierarchy), and configured Row-Level Security for HIPAA compliance.</p>
-                </div>
-                <div class="project-results">
-                    <span class="result-badge">70% faster reporting</span>
-                    <span class="result-badge">50,000+ encounters</span>
-                    <span class="result-badge">Sub-second filtering</span>
-                </div>
-            </div>
+        <ul>
+            <li><strong>Power Query Data Cleaning & Text Hygiene:</strong> Executed <span class="code-pill">Text.Trim</span> and <span class="code-pill">Text.Clean</span> to remove invisible ASCII control characters, applied <span class="code-pill">Text.Proper</span> across categories, imputed <span class="code-pill">"Unknown"</span> for missing postal codes, and derived <span class="code-pill">Shipping Days</span> during ingestion to offload DAX runtime.</li>
+            <li><strong>VertiPaq Compression Strict Typing:</strong> Cast dates strictly as <span class="code-pill">Date</span> (dropping time components) and monetary metrics as <span class="code-pill">Fixed Decimal Number</span> (Currency 19,4) to minimize dictionary size and eliminate floating-point rounding errors.</li>
+            <li><strong>Safe Dimensional Returns Merge:</strong> Deduplicated raw returns on Order ID and executed a Left Outer merge into <span class="code-pill">fOrders</span> with a binary flag (<span class="code-pill">0/1</span>), eliminating hazardous Many-to-Many physical relationships while preserving optimal query speeds.</li>
+            <li><strong>Star Schema Modeling:</strong> Architected fact table <span class="code-pill">fOrders</span> connected via 1:* single cross-filter relationships to 4 dimensions: <span class="code-pill">dCustomers</span>, <span class="code-pill">dProducts</span>, <span class="code-pill">dAddress</span> (surrogate key), and a dedicated calendar table <span class="code-pill">dDate</span>.</li>
+            <li><strong>High-Impact DAX Engine:</strong> Programmed dynamic breadcrumb tooltips (<span class="code-pill">Location Label</span>), defect diagnostics (<span class="code-pill">Item Return Rate %</span> vs. Order Return Rate), time-intelligence (<span class="code-pill">Sales YoY %</span> via <span class="code-pill">SAMEPERIODLASTYEAR</span>), and single-select horizontal Field Parameter strips (<span class="code-pill">Scatter Y-Axis</span>).</li>
+            <li><strong>Pop-Out Filter Modal:</strong> Built full-canvas 50% opacity backdrop modal with Z-index isolation and scoped bookmark controls (<span class="code-pill">Data unchecked</span>) to preserve user-selected slicer values.</li>
+            <li><strong>Cross-Page Drill-Through Pathways:</strong> Engineered multi-directional drill-throughs enabling leadership to jump seamlessly from high-level Overview down into Products, Customers, Shipping, and Returns.</li>
+            <li><strong>Key Executive Findings Uncovered:</strong>
+                <ul>
+                    <li><em>The "Discount Trap" in Tables & Bookcases:</em> Proved discounts > 20% caused complete profitability collapse, destroying margin without sustainable volume gains.</li>
+                    <li><em>Q4 Warehouse Fulfillment Bottleneck:</em> Isolated a seasonal spike in Standard Class shipping (3.8 → 5.6+ days) every Nov–Dec, justifying temporary warehouse staffing.</li>
+                    <li><em>Packaging vs. Defect Divergence:</em> Discovered Technology items had high Order Return Rates but low Item Return Rates, diagnosing transit packaging damage rather than manufactured product defects.</li>
+                </ul>
+            </li>
+        </ul>
+        <div class="shots">
+            <img src="images/superstore-overview.png" alt="Executive Overview" onerror="this.style.display='none'">
+            <img src="images/superstore-products.png" alt="Product Performance" onerror="this.style.display='none'">
+            <img src="images/superstore-customers.png" alt="Customer Insights" onerror="this.style.display='none'">
+            <img src="images/superstore-returns.png" alt="Returns and Quality Analysis" onerror="this.style.display='none'">
+            <img src="images/superstore-shipping.png" alt="Shipping Operations" onerror="this.style.display='none'">
         </div>
-
     </div>
 </section>
 
-<!-- CTA -->
-<div id="contact">
-    <div class="cta">
-        <h2>Stop Losing Hours to Broken Spreadsheets</h2>
-        <p>Send me a short message describing your current data bottleneck — and let's run a free 10-minute workflow review to map out an automated solution.</p>
-        <a href="mailto:Abdalatyfahmed@gmail.com" class="cta-btn">📩 Get Your Free Workflow Review</a>
-        <div class="guarantees">
-            <span class="guarantee">🔒 Data Privacy First — No patient data needed</span>
-            <span class="guarantee">⚡ 24-Hour Response SLA</span>
-            <span class="guarantee">✅ Zero Technical Debt Guarantee</span>
+
+<!-- 9. CONTACT INFORMATION & CALL TO ACTION -->
+<section id="contact">
+    <div class="contact">
+        <h2>Ready to build reliable data pipelines and interactive dashboards?</h2>
+        <p>Whether you need automated Python data cleaning, web scraping, a clean MySQL Star Schema, or an executive Power BI dashboard, let's connect and discuss your project.</p>
+        <div class="contact-links">
+            <a href="tel:+201146824957">📞 +20 114 682 4957</a>
+            <a href="https://wa.me/201146824957" target="_blank">💬 WhatsApp</a>
+            <a href="mailto:Abdalatyfahmed@gmail.com">📩 Abdalatyfahmed@gmail.com</a>
+            <a href="https://linkedin.com/in/abdalatyf" target="_blank">LinkedIn</a>
+            <a href="https://github.com/abdalatyf" target="_blank">GitHub</a>
+            <a href="https://mostaql.com/u/abdalatyf" target="_blank">Mostaql</a>
         </div>
     </div>
-</div>
+</section>
 
-<!-- FOOTER -->
 <footer>
-    <p>
-        <a href="mailto:Abdalatyfahmed@gmail.com">Email</a> · 
-        <a href="https://linkedin.com/in/abdalatyf" target="_blank">LinkedIn</a> · 
-        <a href="https://github.com/abdalatyf" target="_blank">GitHub</a>
-    </p>
-    <p style="margin-top: 0.5rem;">© 2026 Abdalatyf Ahmed Ibrahim. All rights reserved.</p>
+    <p>© 2026 Abdalatyf Ahmed Ibrahim · Built with clean, framework-free HTML & CSS · Hosted on GitHub Pages</p>
 </footer>
 
 </body>
